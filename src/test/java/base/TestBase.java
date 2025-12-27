@@ -13,6 +13,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class TestBase {
 
     protected WebDriver driver;
+    
+    public WebDriver getDriver() {
+		return null;
+	}
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
@@ -36,5 +40,7 @@ public class TestBase {
             driver.quit();
         }
     }
+
+	
 }
 
