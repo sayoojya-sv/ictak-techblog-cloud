@@ -13,34 +13,38 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class TestBase {
 
     protected WebDriver driver;
-    
+
     public WebDriver getDriver() {
-		return null;
-	}
+        return driver;
+    }
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
 
-        WebDriverManager.chromedriver().setup();
+        try {
+            WebDriverManager.chromedriver().setup();
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--window-size=1920,1080");
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless=new");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--window-size=1920,1080");
 
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("http://64.227.132.106/");
+            driver = new ChromeDriver(options);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            driver.get("http://64.227.132.106/");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("❌ Browser failed to start in headless mode");
+        }
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
     }
-
-	
 }
-

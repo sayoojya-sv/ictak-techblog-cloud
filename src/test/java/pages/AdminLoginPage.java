@@ -19,7 +19,7 @@ public class AdminLoginPage {
 	}
 	public void dropDown() {
 		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		WebElement drpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='navbarDropdown' and contains(@class,'dropdown-toggle')]")));
+		WebElement drpDown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='navbarDropdown' and contains(@class,'dropdown-toggle')]")));
 		drpDown.click();
 		WebElement log = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='drop' and text()='Login']")));
 		log.click();

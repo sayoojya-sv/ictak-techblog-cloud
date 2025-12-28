@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -43,7 +42,7 @@ public class AdminTest extends TestBase{
 	MyPostAssertions mypst_assert;
 	ContactUsAssertions us_assert;
 	
-	@BeforeMethod(alwaysRun = true)
+	@BeforeClass
 	public void objectInit() {
 		ad_log      =  new AdminLoginPage(driver);
 		ad_hom      =  new AdminHomePage(driver);
